@@ -3,7 +3,7 @@ import Calendar from './calender.js'
 import LocalHolidays from './common/LocalHolidays.js';
 import localHolidaysNorway from './common/localHolidaysNorway.js';
 import {range} from './common/utils.js'
-import TestRunner from './common/test_runner.js'
+import TestRunner from './common/test_runner.js';
 
 
 class App {

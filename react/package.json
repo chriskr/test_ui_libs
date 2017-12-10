@@ -2,7 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "/web/test_libs/react/build/",
+  "homepage": "/test_ui_libs/react/build/",
   "dependencies": {
     "react": "^16.1.1",
     "react-dom": "^16.1.1",

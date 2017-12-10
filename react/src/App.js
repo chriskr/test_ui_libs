@@ -2,6 +2,7 @@ import "./common/polyfills";
 import React, { Component } from "react";
 import Calendar from "./Calendar";
 import { range } from "./common/utils";
+import TestRunner from './common/test_runner.js';
 
 class App extends Component {
   constructor(props) {
@@ -9,6 +10,8 @@ class App extends Component {
     this.state = { count: 1, time: "" };
     this.handleClick = this.handleClick.bind(this);
     this.showTime = this.showTime.bind(this);
+
+    new TestRunner(document.querySelector('h3'));
   }
 
   handleClick(event) {
@@ -18,6 +21,7 @@ class App extends Component {
   }
 
   showTime(time) {
+    document.dispatchEvent(new CustomEvent('log-time', {detail: time}));
     this.setState({ time: time });
   }
 
