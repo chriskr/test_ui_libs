@@ -5,7 +5,7 @@ const FORWARD = 1;
 const BACK = 2;
 const NEW_VIEW = 3;
 const CLEAR_VIEW = 4;
-const NEW_SINGLE_VIEW = 4;
+const NEW_SINGLE_VIEW = 5;
 
 const TEST_UPDATE_COMPONENT = 1;
 const TEST_NEW_VIEW = 2;
@@ -51,12 +51,12 @@ const defs = new Map([
 ]);
 
 const tests = [
-  [CLEAR_VIEW, NEW_SINGLE_VIEW],
   ...Array.from(range(5)).map(
       () =>
           [FORWARD, FORWARD, FORWARD, BACK, BACK, BACK, BACK, BACK, BACK, BACK,
            BACK, FORWARD, FORWARD, FORWARD]),
   ...Array.from(range(20)).map(() => [CLEAR_VIEW, NEW_VIEW]),
+  [CLEAR_VIEW, NEW_SINGLE_VIEW],
 ].reduce((acc, array) => (acc.push(...array), acc));
 
 class TestRunner {
