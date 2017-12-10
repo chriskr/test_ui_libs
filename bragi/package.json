@@ -1,0 +1,23 @@
+{
+  "name": "test-bragi",
+  "license": "Apache-2.0",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:chriskr/b_splines.git"
+  },
+  "scripts": {
+    "build": "webpack && webpack --config webpack-es2015.config.js"
+  },
+  "devDependencies": {
+    "babel-cli": "latest",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-plugin-transform-runtime": "latest",
+    "babel-runtime": "latest",
+    "webpack": "^3.8.1",
+    "uglifyjs-webpack-plugin": "latest"
+  }
+}
