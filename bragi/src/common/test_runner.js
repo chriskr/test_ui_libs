@@ -5,6 +5,7 @@ const FORWARD = 1;
 const BACK = 2;
 const NEW_VIEW = 3;
 const CLEAR_VIEW = 4;
+const NEW_SINGLE_VIEW = 4;
 
 const TEST_UPDATE_COMPONENT = 1;
 const TEST_NEW_VIEW = 2;
@@ -24,30 +25,33 @@ const defs = new Map([
     }
   ],
   [
-    BACK,
-    {
+    BACK, {
       'selector': '[data-handler="previous-year"]',
       'type': TEST_UPDATE_COMPONENT,
-    },
+    }
   ],
   [
-    CLEAR_VIEW,
-    {
+    CLEAR_VIEW, {
       'selector': 'button[value="0"]',
-      'type': TEST_CLEAR_VIEW,
       'ignore': true,
-    },
+    }
   ],
   [
-    NEW_VIEW,
-    {
+    NEW_VIEW, {
       'selector': 'button[value="10"]',
       'type': TEST_NEW_VIEW,
-    },
+    }
+  ],
+  [
+    NEW_SINGLE_VIEW, {
+      'selector': 'button[value="1"]',
+      'ignore': true,
+    }
   ],
 ]);
 
 const tests = [
+  [CLEAR_VIEW, NEW_SINGLE_VIEW],
   ...Array.from(range(5)).map(
       () =>
           [FORWARD, FORWARD, FORWARD, BACK, BACK, BACK, BACK, BACK, BACK, BACK,
@@ -129,34 +133,36 @@ TestRunner.Templates = class {
         'ul',
         ...results.map(result => ['li', `${result.label}: ${result.time}ms`])
       ],
-      ['style', `
-          #result-dialog {
-            background-color: hsla(0, 0%, 0%, .3);
-            border: 1px solid hsla(0, 0%, 100%, .7);
-            font-size: 16px;
-            left: 10px;
-            padding: 5px 10px;
-            position: fixed;
-            top: 100px;
-          }
+      [
+        'style', `
+            #result-dialog {
+              background-color: hsla(0, 0%, 0%, .3);
+              border: 1px solid hsla(0, 0%, 100%, .7);
+              font-size: 16px;
+              left: 10px;
+              padding: 5px 10px;
+              position: fixed;
+              top: 100px;
+            }
 
-          #result-dialog ul {
-            clear: both;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-          }
+            #result-dialog ul {
+              clear: both;
+              list-style: none;
+              margin: 0;
+              padding: 0;
+            }
 
-          #result-dialog .close-button {
-            cursor: pointer;
-            float: right;
-            height: 20px;
-            line-height: 20px;
-            text-align: center;
-            padding: 0 5px;
-            margin-right: -5px;
-          }
-          `]
+            #result-dialog .close-button {
+              cursor: pointer;
+              float: right;
+              height: 20px;
+              line-height: 20px;
+              text-align: center;
+              padding: 0 5px;
+              margin-right: -5px;
+            }
+            `
+      ]
     ];
   }
 }
