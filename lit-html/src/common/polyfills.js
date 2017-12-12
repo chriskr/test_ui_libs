@@ -1,7 +1,7 @@
 if (Array.from === undefined) {
   Array.from = function(iterable) {
-    // Generators
     if (iterable.length === undefined) {
+      // Generators
       if (typeof iterable.next === 'function') {
         var array = [];
         while (true) {
@@ -31,13 +31,15 @@ if (Array.from === undefined) {
 }
 
 if (Array.prototype.includes === undefined) {
+  // eslint-disable-next-line
   Array.prototype.includes = function(item) {
     return this.indexOf(item) > -1;
-  }
+  };
   console.info('Patched Array.prototype.includes');
 }
 
 if (Array.prototype.find === undefined) {
+  // eslint-disable-next-line
   Array.prototype.find = function(callback) {
     for (var i = 0; i < this.length; i++) {
       var item = this[i];
@@ -46,11 +48,12 @@ if (Array.prototype.find === undefined) {
       }
     }
     return null;
-  }
+  };
   console.info('Patched Array.prototype.find');
 }
 
 if (Array.prototype.findIndex === undefined) {
+  // eslint-disable-next-line
   Array.prototype.findIndex = function(callback) {
     for (var i = 0; i < this.length; i++) {
       var item = this[i];
@@ -59,7 +62,7 @@ if (Array.prototype.findIndex === undefined) {
       }
     }
     return -1;
-  }
+  };
   console.info('Patched Array.prototype.findIndex');
 }
 
@@ -100,7 +103,7 @@ GeneratorPolyfill.prototype = new function() {
     this.done_ = true;
     return {value: value, done: this.done_};
   }
-};
+}();
 
 (function() {
   var getName = function(class_) {
@@ -108,14 +111,15 @@ GeneratorPolyfill.prototype = new function() {
       return class_.name;
     }
     var str = String(class_);
-    var match = /[A-Z][^ \(\]]+/.exec(str);
+    var match = /[A-Z][^ (\]]+/.exec(str);
     if (match) {
       return match[0];
     }
     return str;
   }
   var classes = [Array, NodeList, Map, Set];
-  for (var i = 0, class_; class_ = classes[i]; i++) {
+  for (var i = 0; i < classes.length; i++) {
+    var class_ = classes[i];
     if (class_.prototype[Symbol.iterator] === undefined) {
       class_.prototype[Symbol.iterator] = GeneratorPolyfill.generator;
       console.info(
@@ -126,6 +130,7 @@ GeneratorPolyfill.prototype = new function() {
 
 if (new Map([[1, 1]]).size === 0) {
   (function(MapClass) {
+    // eslint-disable-next-line
     Map = function(initList) {
       var map = new MapClass();
       if (initList !== undefined) {
@@ -141,6 +146,7 @@ if (new Map([[1, 1]]).size === 0) {
 }
 
 if (String.prototype.includes === undefined) {
+  // eslint-disable-next-line
   String.prototype.includes = function(item) {
     return this.indexOf(item) > -1;
   }
@@ -149,24 +155,25 @@ if (String.prototype.includes === undefined) {
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/repeat
 if (String.prototype.repeat === undefined) {
+  // eslint-disable-next-line
   String.prototype.repeat = function(count) {
-    'use strict';
     if (this == null) {
       throw new TypeError('can\'t convert ' + this + ' to object');
     }
     var str = '' + this;
     count = +count;
-    if (count != count) {
+    // eslint-disable-next-line
+    if (count !== count) {
       count = 0;
     }
     if (count < 0) {
       throw new RangeError('repeat count must be non-negative');
     }
-    if (count == Infinity) {
+    if (count === Infinity) {
       throw new RangeError('repeat count must be less than infinity');
     }
     count = Math.floor(count);
-    if (str.length == 0 || count == 0) {
+    if (str.length === 0 || count === 0) {
       return '';
     }
     // Ensuring count is a 31-bit integer allows us to heavily optimize the
@@ -211,9 +218,10 @@ if (Element.prototype.remove === undefined) {
 }
 
 try {
-  var e = new Event('change', {bubbles: true});
-} catch (e) {
+  new Event('change', {bubbles: true});
+} catch (error) {
   (function(EventPrototype) {
+    // eslint-disable-next-line
     Event = function(type, options) {
       var event = document.createEvent('Event');
       event.initEvent(
@@ -227,9 +235,10 @@ try {
 }
 
 try {
-  var e = new CustomEvent('test', {detail: 'foo'});
-} catch (e) {
+  new CustomEvent('test', {detail: 'foo'});
+} catch (error) {
   (function(EventPrototype) {
+    // eslint-disable-next-line
     CustomEvent = function(type, options) {
       if (options === undefined) {
         options = {bubbles: false, cancelable: false, detail: undefined};
@@ -282,7 +291,8 @@ if (!Element.prototype.matches) {
   Element.prototype.matches =
       Element.prototype.msMatchesSelector || function(selector) {
         var candidates = this.parentNode.querySelectorAll(selector);
-        for (var i = 0, candidate; candidate = candidates[i]; i++) {
+        for (var i = 0; i < candidates.length; i++) {
+          var candidate = candidates[i];
           if (candidate === this) {
             return true
           }

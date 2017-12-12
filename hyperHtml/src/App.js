@@ -1,5 +1,6 @@
 import Calendar from './Calendar.js';
 import {range} from './common/utils.js';
+import TestRunner from './common/test_runner.js';
 
 const {wire, Component} = hyperHTML;
 
@@ -10,6 +11,8 @@ class App extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.showTime = this.showTime.bind(this);
     this.calendars_ = [];
+
+    new TestRunner(document.querySelector('h3'));
   }
 
   handleClick(event) {
@@ -19,6 +22,7 @@ class App extends Component {
   }
 
   showTime(time) {
+    document.dispatchEvent(new CustomEvent('log-time', {detail: time}));
     this.setState({time: time});
   }
 

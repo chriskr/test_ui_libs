@@ -1,10 +1,10 @@
 <!doctype html>
-<title>calendar with bragi light</title>
+<title>calendar with <%= htmlWebpackPlugin.options.options.lib %></title>
 <meta charset=utf-8>
 <link rel=icon href=./common/favicon.png>
 <link rel=stylesheet href=./common/calendar.css>
 <script> window.__supportsNewJS__ = false; </script>
-<script src="bundle.js"></script>
+<script src="<%= htmlWebpackPlugin.files.js %>"></script>
 <script>
 window.addEventListener('load', function() {
   if (window.__supportsNewJS__ === false) {
@@ -12,5 +12,5 @@ window.addEventListener('load', function() {
   }
 });
 </script>
-<h3>bragi light</h3>
+<h3><%= htmlWebpackPlugin.options.options.lib %></h3>
 <div id=root></div>

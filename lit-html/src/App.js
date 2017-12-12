@@ -2,6 +2,7 @@ import {html, render} from './lit-html.js';
 import LitComponent from './LitComponent.js';
 import Calendar from './Calendar.js';
 import {range} from './common/utils.js';
+import TestRunner from './common/test_runner.js';
 
 
 class App extends LitComponent {
@@ -12,6 +13,8 @@ class App extends LitComponent {
     this.handleClick = this.handleClick.bind(this);
     this.showTime = this.showTime.bind(this);
     this.calendars_ = [];
+
+    new TestRunner(document.querySelector('h3'));
 
 
   }
@@ -31,6 +34,7 @@ class App extends LitComponent {
   }
 
   showTime(time) {
+    document.dispatchEvent(new CustomEvent('log-time', {detail: time}));
     this.setState({time: time});
   }
 
