@@ -4,6 +4,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // https://www.npmjs.com/package/copy-webpack-plugin
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const libData = require('./lib_data.js').default;
 
 module.exports = {
   entry: './src/main.js',
@@ -18,7 +19,7 @@ module.exports = {
       filename: 'index.html',
       template: path.resolve(__dirname, 'src/common/index.html'),
       options: {
-        lib: 'bragi light',
+        lib: libData.title,
       }
     }),
     new CopyWebpackPlugin([

@@ -8,8 +8,9 @@
   },
   "scripts": {
     "buildx": "webpack && webpack --config webpack-es2015.config.js",
-    "setup": "copyfiles --up 1 ../common/*.* src",
-    "build": "npm run setup && webpack"
+    "setup": "copyfiles --up 1 -e ../common/*.config.js  ../common/*.* src",
+    "setup-config": "copyfiles -f ../common/*.config.js .",
+    "build": "npm run setup && npm run setup-config && webpack && webpack --config webpack-es2015.config.js"
   },
   "devDependencies": {
     "babel-cli": "latest",
