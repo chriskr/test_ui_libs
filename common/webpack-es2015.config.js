@@ -7,7 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const libData = require('./lib_data.js').default;
 
 module.exports = {
-  entry: ['./src/common/polyfills.js', './src/main.js'],
+  entry: ['./src/common/polyfills.js', libData.entry],
   output:
       {filename: 'bundle-es2015.js', path: path.resolve(__dirname, 'build')},
   module: {

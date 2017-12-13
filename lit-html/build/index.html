@@ -1,12 +1,12 @@
 <!doctype html>
-<title>calendar with <%= htmlWebpackPlugin.options.options.lib %></title>
+<title>calendar with lit-html</title>
 <meta charset=utf-8>
 <link rel=icon href=./common/favicon.png>
 <link rel=stylesheet href=./common/calendar.css>
-<h3><%= htmlWebpackPlugin.options.options.lib %></h3>
+<h3>lit-html</h3>
 <div id=root></div>
 <script> window.__supportsNewJS__ = false; </script>
-<script src="<%= htmlWebpackPlugin.files.js %>"></script>
+<script src="bundle.js"></script>
 <script>
 window.addEventListener('load', function() {
   if (window.__supportsNewJS__ === false) {

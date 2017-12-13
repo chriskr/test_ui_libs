@@ -7,7 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const libData = require('./lib_data.js').default;
 
 module.exports = {
-  entry: './src/main.js',
+  entry: libData.entry,
   output: {filename: 'bundle.js', path: path.resolve(__dirname, 'build')},
   module: {
     rules: [],

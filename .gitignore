@@ -1,2 +1,6 @@
 node_modules/
 */src/common/
+bragi/webpack.config.js
+bragi/webpack-es2015.config.js
+lit-html/webpack-es2015.config.js
+lit-html/webpack.config.js
