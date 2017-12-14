@@ -1230,3 +1230,5 @@ function hyper(HTML) {
 return hyper;
 
 }(window));
+
+export default hyperHTML;

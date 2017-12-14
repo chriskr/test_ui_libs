@@ -1,6 +1,5 @@
-
+import hyperHTML from './hyperhtml.js';
 import App from './App.js';
 
-console.log(App)
-
 hyperHTML.bind(document.getElementById('root'))`${new App()}`;
+window.__supportsNewJS__ = true;

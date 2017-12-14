@@ -2,6 +2,7 @@ import {range, rotate} from './common/utils.js';
 import {getWeeksOfMonth} from './common/dateExtensions.js';
 import LocalHolidays from './common/LocalHolidays.js';
 import localHolidaysNorway from './common/localHolidaysNorway.js';
+import hyperHTML from './hyperhtml.js';
 
 const {wire, Component} = hyperHTML;
 

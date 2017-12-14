@@ -9,12 +9,14 @@
     "react-scripts": "1.0.17"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "setup": "copyfiles --up 1 -e ../common/*.config.js  ../common/*.* src",
+    "start": "npm run setup && react-scripts start",
+    "build": "npm run setup && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "copyfiles": "^1.2.0",
     "webpack": "^3.8.1"
   }
 }

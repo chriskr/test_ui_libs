@@ -1,4 +1,4 @@
-import Bragi from './bragi_light.js';
+import './bragi_light.js';
 import {range} from './utils.js'
 
 const FORWARD = 1;
@@ -57,6 +57,7 @@ const tests = [
            BACK, FORWARD, FORWARD, FORWARD]),
   ...Array.from(range(20)).map(() => [CLEAR_VIEW, NEW_VIEW]),
   [CLEAR_VIEW, NEW_SINGLE_VIEW],
+// eslint-disable-next-line
 ].reduce((acc, array) => (acc.push(...array), acc));
 
 class TestRunner {
