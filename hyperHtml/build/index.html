@@ -1,0 +1,16 @@
+<!doctype html>
+<title>calendar with hyperHTML</title>
+<meta charset=utf-8>
+<link rel=icon href=./common/favicon.png>
+<link rel=stylesheet href=./common/calendar.css>
+<h3>hyperHTML</h3>
+<div id=root></div>
+<script> window.__supportsNewJS__ = false; </script>
+<script src="bundle.js"></script>
+<script>
+window.addEventListener('load', function() {
+  if (window.__supportsNewJS__ === false) {
+    window.location.href = './index-es2015.html';
+  }
+});
+</script>
