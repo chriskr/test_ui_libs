@@ -12,7 +12,6 @@ class App extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.showTime = this.showTime.bind(this);
     this.calendars_ = [];
-
     new TestRunner(document.querySelector('h3'));
   }
 
@@ -29,7 +28,7 @@ class App extends Component {
 
   render() {
     const testButtons =
-        [0, 1, 2, 3, 5, 10, 100].map(value => this.renderButton(value));
+        [0, 1, 2, 3, 5, 10, 50, 100].map(value => this.renderButton(value));
     const time =
         this.state.time > 0 ? `${this.state.time.toFixed(2)} milliseconds` : '';
     while (this.calendars_.length < this.state.count) {

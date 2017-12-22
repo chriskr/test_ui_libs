@@ -1,0 +1,12 @@
+{
+  "name": "test-bragi",
+  "license": "Apache-2.0",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:chriskr/b_splines.git"
+  },
+  "scripts": {
+    "build": "cd ./bragi/ && npm run build && cd ../react/ && npm run build && cd ../lit-html/ && npm run build && cd ../hyperHTML/ && npm run build"
+  }
+}

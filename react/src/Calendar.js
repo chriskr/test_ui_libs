@@ -1,8 +1,10 @@
-import React from "react";
-import { range, rotate } from "./common/utils";
-import { getWeeksOfMonth } from "./common/dateExtensions";
-import LocalHolidays from "./common/LocalHolidays";
-import localHolidaysNorway from "./common/localHolidaysNorway";
+import React from 'react';
+
+import {getWeeksOfMonth} from './common/dateExtensions';
+import LocalHolidays from './common/LocalHolidays';
+import localHolidaysNorway from './common/localHolidaysNorway';
+import {MONTH_NAMES, WEEK_DAYS_LONG, WEEK_DAYS_SHORT} from './common/ui_strings';
+import {range, rotate} from './common/utils';
 
 class Calendar extends React.Component {
   constructor(props) {
@@ -122,7 +124,6 @@ const Holidays = ({ year, month, holidays }) => {
   if (holidaysOfMonth.length === 0) {
     return null;
   }
-
   const listItems = holidaysOfMonth.map(([day, name]) => (
     <li key={`${day}${name}`}>{`${day}. ${name}`}</li>
   ));
@@ -138,32 +139,5 @@ const getToday = () => {
   const day = d.getDay();
   return { year, month, date, day };
 };
-
-const WEEK_DAYS_SHORT = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
-
-const WEEK_DAYS_LONG = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday"
-];
-
-const MONTH_NAMES = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December"
-];
 
 export default Calendar;

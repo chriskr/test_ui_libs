@@ -6,17 +6,13 @@ import TestRunner from './common/test_runner.js';
 
 
 class App extends LitComponent {
-
   constructor() {
     super();
     this.state = {count: 1, time: 0};
     this.handleClick = this.handleClick.bind(this);
     this.showTime = this.showTime.bind(this);
     this.calendars_ = [];
-
     new TestRunner(document.querySelector('h3'));
-
-
   }
 
   onFirstCreation(container) {
@@ -39,9 +35,8 @@ class App extends LitComponent {
   }
 
   getHtml() {
-
     const testButtons =
-        [0, 1, 2, 3, 5, 10, 100].map(value => this.renderButton(value));
+        [0, 1, 2, 3, 5, 10, 50, 100].map(value => this.renderButton(value));
     const time =
         this.state.time > 0 ? `${this.state.time.toFixed(2)} milliseconds` : '';
     while (this.calendars_.length < this.state.count) {
@@ -50,8 +45,6 @@ class App extends LitComponent {
     while (this.calendars_.length > this.state.count) {
       this.calendars_.pop();
     }
-
-
     return html`
         <div id="test-buttons">
           ${testButtons}
@@ -59,10 +52,6 @@ class App extends LitComponent {
         </div>
         ${this.calendars_}
         `;
-
-    // return r;
-        //${this.calendars_.slice()}
-    //setTimeout(() => this.render(), 1000)
   }
 
   renderButton(value) {

@@ -10,7 +10,6 @@ class App extends Component {
     this.state = { count: 1, time: "" };
     this.handleClick = this.handleClick.bind(this);
     this.showTime = this.showTime.bind(this);
-
     new TestRunner(document.querySelector('h3'));
   }
 
@@ -29,7 +28,7 @@ class App extends Component {
     const calendars = Array.from(range(this.state.count)).map(index => (
       <Calendar key={index} showTime={this.showTime} />
     ));
-    const testButtons = [0, 1, 2, 3, 5, 10, 100].map(value => (
+    const testButtons = [0, 1, 2, 3, 5, 10, 50, 100].map(value => (
       <TestButton key={value} onClick={this.handleClick} value={`${value}`} />
     ));
     const time =

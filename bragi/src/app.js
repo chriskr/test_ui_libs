@@ -1,8 +1,8 @@
-import Bragi from './common/bragi_light.js'
-import Calendar from './calender.js'
+import Bragi from './common/bragi_light.js';
+import Calendar from './calender.js';
 import LocalHolidays from './common/LocalHolidays.js';
 import localHolidaysNorway from './common/localHolidaysNorway.js';
-import {range} from './common/utils.js'
+import {range} from './common/utils.js';
 import TestRunner from './common/test_runner.js';
 
 
@@ -13,7 +13,6 @@ class App {
     this.holidays_ = new LocalHolidays(localHolidaysNorway);
     document.addEventListener(
         'display-time', event => this.displayTime_(event.detail));
-
     new TestRunner(document.querySelector('h3'));
   }
 
@@ -49,8 +48,6 @@ class App {
         time > 0 ? `${time.toFixed(2)} milliseconds` : '';
   }
 }
-
-
 
 App.Templates = class {
   static testButton(value) {

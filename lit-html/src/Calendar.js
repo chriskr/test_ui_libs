@@ -1,45 +1,10 @@
-import {html, render} from './lit-html.js';
-import LitComponent from './LitComponent.js';
-import {range, rotate} from './common/utils.js';
 import {getWeeksOfMonth} from './common/dateExtensions.js';
 import LocalHolidays from './common/LocalHolidays.js';
 import localHolidaysNorway from './common/localHolidaysNorway.js';
-
-
-const WEEK_DAYS_SHORT = [
-  'Su',
-  'Mo',
-  'Tu',
-  'We',
-  'Th',
-  'Fr',
-  'Sa',
-];
-
-const WEEK_DAYS_LONG = [
-  'Sunday',
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-];
-
-const MONTH_NAMES = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
+import {MONTH_NAMES, WEEK_DAYS_LONG, WEEK_DAYS_SHORT} from './common/ui_strings.js';
+import {range, rotate} from './common/utils.js';
+import {html, render} from './lit-html.js';
+import LitComponent from './LitComponent.js';
 
 class Calendar extends LitComponent {
   constructor(showTime) {
@@ -100,7 +65,6 @@ class Calendar extends LitComponent {
     const weeksOfMonth = getWeeksOfMonth(this.state.year, month);
     const weekDays = rotate(WEEK_DAYS_SHORT, 1);
     const weekLabels = weekDays.map(wday => html`<th>${wday}</th>`);
-
     const weekRows =
         weeksOfMonth.map((week, index) => this.renderWeek(month, week, index));
     const holidayList = this.renderHolidays(month);
@@ -130,7 +94,6 @@ class Calendar extends LitComponent {
   renderWeek(month, week, weekIndex) {
     const INDEX_SUNDAY = 6;
     const [weekNumber, weekDays] = week;
-
     const weekRow = weekDays.map((day, index) => {
       const isToday = this.today.year === this.state.year &&
           this.today.month === month && this.today.date === day;
@@ -139,9 +102,7 @@ class Calendar extends LitComponent {
       const className =
           `${isToday ? 'today' : ''} ${isHoliday ? 'holiday' : ''}`.trim();
 
-      return html`
-          <td class="${className}">${day > 0 ? day : ''}</td>
-          `;
+      return html`<td class="${className}">${day > 0 ? day : ''}</td>`;
     });
 
     return html`
@@ -159,13 +120,10 @@ class Calendar extends LitComponent {
     if (holidaysOfMonth.length === 0) {
       return null;
     }
-
     const listItems =
         holidaysOfMonth.map(([day, name]) => html`<li>${day}. ${name}</li>`);
 
-    return html`
-        <ul class="holidays">${listItems}</ul>
-        `;
+    return html`<ul class="holidays">${listItems}</ul>`;
   }
 
   getToday() {

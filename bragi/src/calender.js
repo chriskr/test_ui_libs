@@ -1,51 +1,11 @@
-import Bragi from './common/bragi_light.js'
-import {range, rotate} from './common/utils.js'
+import Bragi from './common/bragi_light.js';
 import {getWeeksOfMonth} from './common/dateExtensions.js';
 import LocalHolidays from './common/LocalHolidays.js';
 import localHolidaysNorway from './common/localHolidaysNorway.js';
+import {MONTH_NAMES, WEEK_DAYS_LONG, WEEK_DAYS_SHORT} from './common/ui_strings.js';
+import {range, rotate} from './common/utils.js';
 
 class Calendar {
-  static get WEEK_DAYS_SHORT() {
-    return [
-      'Su',
-      'Mo',
-      'Tu',
-      'We',
-      'Th',
-      'Fr',
-      'Sa',
-    ];
-  }
-
-  static get WEEK_DAYS_LONG() {
-    return [
-      'Sunday',
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
-    ];
-  }
-
-  static get MONTH_NAMES() {
-    return [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
-  }
-
   static getToday() {
     const d = new Date();
     const year = d.getFullYear();
@@ -117,8 +77,8 @@ Calendar.Templates = class {
       ['span', {'data-handler': 'previous-year'}, '<'],
       [
         'h1',
-        `${Calendar.WEEK_DAYS_LONG[today.day]}` +
-            ` ${Calendar.MONTH_NAMES[today.month]} ${today.date}`
+        `${WEEK_DAYS_LONG[today.day]}` +
+            ` ${MONTH_NAMES[today.month]} ${today.date}`
       ],
       ['span', {'data-handler': 'next-year'}, '>'],
     ];
@@ -138,7 +98,7 @@ Calendar.Templates = class {
 
     table.push([
       'caption',
-      ['span', {'class': 'month-name'}, Calendar.MONTH_NAMES[month]],
+      ['span', {'class': 'month-name'}, MONTH_NAMES[month]],
       ['span', {'class': 'year-number'}, String(year)],
     ]);
 
@@ -146,7 +106,7 @@ Calendar.Templates = class {
     if (withWeekNubers) {
       headRow.push(['th', 'Week']);
     }
-    const weekDays = rotate(Calendar.WEEK_DAYS_SHORT, 1);
+    const weekDays = rotate(WEEK_DAYS_SHORT, 1);
     headRow.push(...weekDays.map(wday => ['th', wday]));
     table.push(['thead', ['tr', ...headRow]]);
 
