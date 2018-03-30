@@ -1,7 +1,7 @@
 import sys
 
-ITEM_HEIGHT = 20
-SPACING = 10
+ITEM_HEIGHT = 10
+SPACING = 20
 DELTA = ITEM_HEIGHT + SPACING
 LABEL_WIDTH = 100
 
@@ -41,7 +41,7 @@ style = """\
 
 bar = """\
   <g class="bar" transform="translate(0, {{0}})">
-    <text x="{2}" y="15" >{{1}}</text>
+    <text x="{2}" y="14" >{{1}}</text>
     <rect x="{0}" y="0" width="{{2}}" height="{1}" />
   </g>
 """.format(LABEL_WIDTH + SPACING, ITEM_HEIGHT, SPACING)
@@ -70,7 +70,7 @@ units = """\
 def get_max_width(m):
   for i in [5, 10, 50, 100, 500, 1000]:
     if m < i * 10:
-      return i, (int(m / i) + 1) * i 
+      return i, (int(m / i) + 1) * i
 
 if __name__ == '__main__':
   # width, unit, (name, time)+
@@ -89,4 +89,4 @@ if __name__ == '__main__':
   grids = ''.join(map(lambda i: line.format(i * scale, h, h + 15, i), range(0, max_width + 1, grid_size)))
   height = h + SPACING + 25
   print svg.format(width, height, bars, lines.format(grids), units.format(width - 0.5 * (grid_size * scale), h + SPACING + 15, column_unit), '')
-  
+

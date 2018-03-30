@@ -4,14 +4,16 @@ class LitComponent {
   constructor() {
     this.container_ = document.createDocumentFragment();
     this.state = {};
+    this.elements_ = [];
   }
 
   render() {
     render(this.getHtml(), this.container_);
     if (this.container_.childNodes.length !== 0) {
       this.onFirstCreation(this.container_);
+      this.elements_ = Array.from(this.container_.childNodes);
     }
-    return Array.from(this.container_.childNodes);
+    return this.elements_;
   }
 
   getHtml() {

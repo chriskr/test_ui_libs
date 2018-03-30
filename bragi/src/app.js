@@ -20,6 +20,7 @@ class App {
     this.container_ = container;
     this.container_.appendTemplate(App.Templates.testButtons());
     this.timeDisplay_ = this.container_.querySelector('#time-display');
+    this.calendars_ = [];
     this.container_.querySelector('#test-buttons')
         .addEventListener('click', event => {
           const target = event.target;
@@ -34,12 +35,11 @@ class App {
   }
 
   displayCalendars_(count) {
-    Array.from(this.container_.querySelectorAll('.calendar'))
-        .forEach(calendar => calendar.remove());
-    Array.from(range(count))
-        .forEach(
-            () => this.container_.appendChild(
-                new Calendar(this.holidays_).getElement()));
+    this.calendars_.forEach(calendar => calendar.destroy());
+    this.calendars_ =
+        Array.from(range(count)).map(() => new Calendar(this.holidays_));
+    this.calendars_.forEach(
+        calendar => this.container_.appendChild(calendar.getElement()));
   }
 
   displayTime_(time) {

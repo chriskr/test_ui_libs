@@ -12,6 +12,7 @@ class App extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.showTime = this.showTime.bind(this);
     this.calendars_ = [];
+    this.timeDisplay_ = new TimeDisplay();
     new TestRunner(document.querySelector('h3'));
   }
 
@@ -23,7 +24,8 @@ class App extends Component {
 
   showTime(time) {
     document.dispatchEvent(new CustomEvent('log-time', {detail: time}));
-    this.setState({time: time});
+    //this.setState({time: time});
+    this.timeDisplay_.showTime(time);
   }
 
   render() {
@@ -41,7 +43,7 @@ class App extends Component {
     return this.html`
         <div key="test-buttons" id="test-buttons">
           ${testButtons}
-          <div key="time-display" id="time-display">${time}</div>
+          ${this.timeDisplay_}
         </div>
         ${this.calendars_.slice()}
         `;
@@ -54,6 +56,24 @@ class App extends Component {
                 title=${`Display ${value} calendars`} >
           ${String(value)}
         </button>`;
+  }
+}
+
+class TimeDisplay extends Component {
+  constructor() {
+    super();
+    this.state = {time: 0};
+  }
+
+  showTime(time) {
+    this.setState({time: time});
+  }
+
+  render() {
+    const time =
+        this.state.time > 0 ? `${this.state.time.toFixed(2)} milliseconds` : '';
+
+    return this.html`<div key="time-display" id="time-display">${time}</div>`;
   }
 }
 

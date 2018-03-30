@@ -1,0 +1,37 @@
+<svg 
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 300 500">
+  <style>
+    svg {
+      font: menu;
+      font-size: 16;
+    }
+
+    rect {
+      fill: hsl(30, 100%, 50%);
+    }
+
+    .line {
+      fill: hsla(0, 0%, 0%, .3);
+    }
+  </style>
+  <g transform="translate(0, 50)">
+    <text x="0" y="35" >bragi</text>
+    <rect x="80" y="20" width="100" height="20" title="hello"/>
+  </g>
+  <g transform="translate(80, 50)">
+    <g transform="translate(0, 0)">
+      <rect class="line" x="0" y="0" width="1" height="50" />
+      <text x="0" y="70" >0</text>
+    </g>
+    <g transform="translate(20, 0)">
+      <rect class="line" x="0" y="0" width="1" height="50" />
+      <text x="0" y="70" >20</text>
+    </g>
+    <g transform="translate(40, 0)">
+      <rect class="line" x="0" y="0" width="1" height="50" />
+      <text x="0" y="70" >40</text>
+    </g>
+  </g>
+
+</svg>

@@ -11,6 +11,7 @@ class App extends LitComponent {
     this.state = {count: 1, time: 0};
     this.handleClick = this.handleClick.bind(this);
     this.showTime = this.showTime.bind(this);
+    this.displayTime_ = new DisplayTime();
     this.calendars_ = [];
     new TestRunner(document.querySelector('h3'));
   }
@@ -31,7 +32,8 @@ class App extends LitComponent {
 
   showTime(time) {
     document.dispatchEvent(new CustomEvent('log-time', {detail: time}));
-    this.setState({time: time});
+    this.displayTime_.showTime(time);
+    //this.setState({time: time});
   }
 
   getHtml() {
@@ -48,7 +50,7 @@ class App extends LitComponent {
     return html`
         <div id="test-buttons">
           ${testButtons}
-          <div key="time-display" id="time-display">${time}</div>
+          ${this.displayTime_.render()}
         </div>
         ${this.calendars_}
         `;
@@ -61,6 +63,26 @@ class App extends LitComponent {
                 title=${`Display ${value} calendars`} >
           ${String(value)}
         </button>`;
+  }
+}
+
+class DisplayTime extends LitComponent {
+    constructor() {
+    super();
+    this.state = {time: 0};
+
+
+  }
+
+  showTime(time) {
+    this.setState({time: time});
+  }
+
+  getHtml() {
+
+    const time =
+        this.state.time > 0 ? `${this.state.time.toFixed(2)} milliseconds` : '';
+    return html` <div key="time-display" id="time-display">${time}</div> `;
   }
 }
 

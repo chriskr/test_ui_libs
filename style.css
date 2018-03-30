@@ -1,0 +1,52 @@
+﻿html {
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  background-color: hsl(30, 56%, 94%);
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding-bottom: 50px;
+}
+
+
+h1,
+h2 {
+  font: inherit;
+  font-weight: 100;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+p {
+
+  font-size: 12px;
+}
+
+svg {
+  display: block;
+  margin: 15px 0;
+  background-color: hsla(0, 0%, 100%, .7);
+  border: 1px solid hsla(0, 0%, 0%, .3);
+}
+
+.bar rect {
+  fill: hsl(30, 90%, 45%);
+  fill: hsl(30, 56%, 14%);
+}
+
+.line rect {
+  fill: hsla(0, 0%, 0%, .2);
+}
+
+.line text {
+  font-size: 11px;
+}

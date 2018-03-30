@@ -7,10 +7,11 @@ import TestRunner from './common/test_runner.js';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { count: 1, time: "" };
+    this.state = { count: 1};
     this.handleClick = this.handleClick.bind(this);
     this.showTime = this.showTime.bind(this);
     new TestRunner(document.querySelector('h3'));
+    window.__a__ = this;
   }
 
   handleClick(event) {
@@ -21,7 +22,9 @@ class App extends Component {
 
   showTime(time) {
     document.dispatchEvent(new CustomEvent('log-time', {detail: time}));
-    this.setState({ time: time });
+    //this.refs.timeDisplay.showTime(time);
+    this.refs.timeDisplay.setState({ time, });
+    //this.setState({ time: time });
   }
 
   render() {
@@ -36,9 +39,7 @@ class App extends Component {
     return [
       <div key="test-buttons" id="test-buttons">
         {testButtons}
-        <div key="time-display" id="time-display">
-          {time}
-        </div>
+        <TimeDisplay  ref="timeDisplay" />
       </div>,
       calendars
     ];
@@ -58,4 +59,20 @@ var TestButton = props => {
   );
 };
 
+class TimeDisplay extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { time: 0};
+  }
+
+  render() {
+    const time =
+      this.state.time > 0 ? `${this.state.time.toFixed(2)} milliseconds` : "";
+    return (
+        <div key="time-display" id="time-display">
+          {time}
+        </div>
+        );
+  }
+}
 export default App;

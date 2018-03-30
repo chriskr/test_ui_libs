@@ -22,25 +22,40 @@ class Calendar {
     this.element_ = null;
   }
 
+  destroy() {
+    if (this.element_) {
+      this.element_.remove();
+      this.element_.removeEventListener('click', this.clickHandler_);
+    }
+    this.clickHandler_ = null;
+    this.element_ = null;
+    this.holidays_ = null;
+    this.today_ = null;
+    this.year_ = null;
+  }
+
   getElement() {
     if (this.element_ === null) {
+      this.clickHandler_ = this.clickHandler_.bind(this);
       this.element_ = Bragi.createTemplate(
           Calendar.Templates.calendar(this.year_, this.today_, this.holidays_));
-      this.element_.addEventListener('click', event => {
-        const t = window.performance.now();
-        const element = event.target.closest('[data-handler]');
-        if (element !== null) {
-          const delta = element.dataset.handler === 'next-year' ? 1 : -1;
-          this.year += delta;
-          this.updateView_();
-        }
-        setTimeout(
-            () => document.dispatchEvent(new CustomEvent(
-                'display-time', {detail: window.performance.now() - t})),
-            1);
-      });
+      this.element_.addEventListener('click', this.clickHandler_);
     }
     return this.element_;
+  }
+
+  clickHandler_(event) {
+    const t = window.performance.now();
+    const element = event.target.closest('[data-handler]');
+    if (element !== null) {
+      const delta = element.dataset.handler === 'next-year' ? 1 : -1;
+      this.year += delta;
+      this.updateView_();
+    }
+    setTimeout(
+        () => document.dispatchEvent(new CustomEvent(
+            'display-time', {detail: window.performance.now() - t})),
+        1);
   }
 
   get year() {
