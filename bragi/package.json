@@ -26,5 +26,7 @@
     "uglifyjs-webpack-plugin": "latest",
     "webpack": "^3.8.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "uldu": "^1.0.4"
+  }
 }
