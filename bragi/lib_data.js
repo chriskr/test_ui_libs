@@ -1,5 +1,5 @@
 const data = {
-	title: 'bragi light',
+	title: 'uldu',
 	entry: './src/main.js',
 };
 

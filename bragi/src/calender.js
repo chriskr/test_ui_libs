@@ -1,4 +1,10 @@
-import Bragi from './common/bragi_light.js';
+import {
+  NAMESPACES,
+  TEXT_NODE_NAME,
+  createDom,
+  render,
+  renderClean,
+} from 'uldu';
 import {getWeeksOfMonth} from './common/dateExtensions.js';
 import LocalHolidays from './common/LocalHolidays.js';
 import localHolidaysNorway from './common/localHolidaysNorway.js';
@@ -37,8 +43,8 @@ class Calendar {
   getElement() {
     if (this.element_ === null) {
       this.clickHandler_ = this.clickHandler_.bind(this);
-      this.element_ = Bragi.createTemplate(
-          Calendar.Templates.calendar(this.year_, this.today_, this.holidays_));
+      this.element_ = createDom(Calendar.Templates.calendar(this.year_,
+            this.today_, this.holidays_));
       this.element_.addEventListener('click', this.clickHandler_);
     }
     return this.element_;
@@ -71,8 +77,8 @@ class Calendar {
       return;
     }
     this.element_.querySelector('section').remove();
-    this.element_.appendTemplate(
-        Calendar.Templates.year(this.year_, this.today_, this.holidays_));
+    render(Calendar.Templates.year(this.year_, this.today_, this.holidays_),
+        this.element_);
   }
 }
 
@@ -89,13 +95,17 @@ Calendar.Templates = class {
   static today(today) {
     return [
       'header',
-      ['span', {'data-handler': 'previous-year'}, '<'],
+      ['span', {'data-handler': 'previous-year'},
+        ['i', {class: 'material-icons'}, 'chevron_left'],
+      ],
       [
         'h1',
         `${WEEK_DAYS_LONG[today.day]}` +
             ` ${MONTH_NAMES[today.month]} ${today.date}`
       ],
-      ['span', {'data-handler': 'next-year'}, '>'],
+      ['span', {'data-handler': 'next-year'},
+        ['i', {class: 'material-icons'}, 'chevron_right'],
+      ],
     ];
   }
 

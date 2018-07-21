@@ -3,4 +3,8 @@ import ReactDOM from 'react-dom';
 import './common/calendar.css';
 import App from './App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const div = document.createElement('div');
+div.id = 'root';
+
+ReactDOM.render(<App />, div);
+document.body.appendChild(div);

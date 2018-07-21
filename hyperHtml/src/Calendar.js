@@ -3,7 +3,7 @@ import LocalHolidays from './common/LocalHolidays.js';
 import localHolidaysNorway from './common/localHolidaysNorway.js';
 import {MONTH_NAMES, WEEK_DAYS_LONG, WEEK_DAYS_SHORT} from './common/ui_strings.js';
 import {range, rotate} from './common/utils.js';
-import hyperHTML from './hyperhtml.js';
+import hyperHTML from 'hyperhtml/esm';
 
 const {wire, Component} = hyperHTML;
 
@@ -37,11 +37,11 @@ class Calendar extends Component {
     return wire(this, ':today') `
       <header>
         <span data-handler="previous-year" onClick=${this.handleClick}>
-          &lt;
+          <i class="material-icons">chevron_left</i>
         </span>
         <h1>${todayStr}</h1>
         <span data-handler="next-year" onClick=${this.handleClick}>
-          &gt;
+          <i class="material-icons">chevron_right</i>
         </span>
       </header>
     `;

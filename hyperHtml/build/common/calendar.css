@@ -84,7 +84,7 @@ header span {
   flex: 1;
   font-size: 46px;
   font-weight: 100;
-  opacity: 0;
+  opacity: .7;
   text-align: center;
   transition: opacity .4s;
 }

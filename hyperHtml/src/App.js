@@ -1,7 +1,7 @@
 import Calendar from './Calendar.js';
 import {range} from './common/utils.js';
 import TestRunner from './common/test_runner.js';
-import hyperHTML from './hyperhtml.js';
+import hyperHTML from 'hyperhtml/esm';
 
 const {wire, Component} = hyperHTML;
 

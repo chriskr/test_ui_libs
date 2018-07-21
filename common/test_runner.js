@@ -1,4 +1,10 @@
-import './bragi_light.js';
+import {
+  NAMESPACES,
+  TEXT_NODE_NAME,
+  createDom,
+  render,
+  renderClean,
+} from 'uldu';
 import {range} from './utils.js'
 
 const FORWARD = 1;
@@ -200,8 +206,7 @@ class TestRunner {
         log[i].count = `${this.results_.length} * ${log[i].count}`;
       }
     }
-    const dialog =
-        document.body.appendTemplate(TestRunner.Templates.resultDialog(log));
+    const dialog = render(TestRunner.Templates.resultDialog(log), document.body);
     dialog.querySelector('.close-button')
         .addEventListener('click', () => this.closeDialog_());
   }

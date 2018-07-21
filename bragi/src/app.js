@@ -1,4 +1,10 @@
-import Bragi from './common/bragi_light.js';
+import {
+  NAMESPACES,
+  TEXT_NODE_NAME,
+  createDom,
+  render,
+  renderClean,
+} from 'uldu';
 import Calendar from './calender.js';
 import LocalHolidays from './common/LocalHolidays.js';
 import localHolidaysNorway from './common/localHolidaysNorway.js';
@@ -18,7 +24,7 @@ class App {
 
   render(container) {
     this.container_ = container;
-    this.container_.appendTemplate(App.Templates.testButtons());
+    render(App.Templates.testButtons(), this.container_);
     this.timeDisplay_ = this.container_.querySelector('#time-display');
     this.calendars_ = [];
     this.container_.querySelector('#test-buttons')

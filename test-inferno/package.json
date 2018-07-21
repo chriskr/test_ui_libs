@@ -1,0 +1,16 @@
+{
+  "name": "test-inferno",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "/test_ui_libs/test-inferno/build/",
+  "dependencies": {
+    "inferno": "^5.0.2",
+    "inferno-scripts": "6.3.0"
+  },
+  "scripts": {
+    "start": "inferno-scripts start",
+    "build": "inferno-scripts build",
+    "test": "inferno-scripts test --env=jsdom",
+    "eject": "inferno-scripts eject"
+  }
+}

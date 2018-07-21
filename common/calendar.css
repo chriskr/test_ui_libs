@@ -21,6 +21,7 @@ body {
 }
 
 h3 {
+  cursor: pointer;
   font-size: 24px;
   font-weight: normal;
   left: 10px;
@@ -37,17 +38,17 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   max-width: 180px;
-  xflex-direction: column;
 }
 
 #test-buttons button {
   background-color: hsla(0, 0%, 0%, .3);
+  border: 1px solid hsla(0, 0%, 100%, .7);
   color: hsla(0, 0%, 100%, .7);
+  cursor: pointer;
   margin: 5px 5px;
+  outline: none;
   padding: 5px 3px;
   width: 32px;
-  border: 1px solid hsla(0, 0%, 100%, .7);
-  outline: none;
 }
 
 #time-display {
@@ -56,6 +57,10 @@ h3 {
   width: 100%;
   font-size: 16px;
   height: 32px;
+}
+
+.calendar {
+  user-select: none;
 }
 
 section {
@@ -84,7 +89,7 @@ header span {
   flex: 1;
   font-size: 46px;
   font-weight: 100;
-  opacity: 0;
+  opacity: .7;
   text-align: center;
   transition: opacity .4s;
 }
