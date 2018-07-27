@@ -109,6 +109,10 @@ header span {
   transition: opacity .4s;
 }
 
+.material-icons {
+  pointer-events: none;
+}
+
 header span:hover {
   opacity: 1;
 }
