@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "/test_ui_libs/test-inferno/build/",
   "dependencies": {
-    "inferno": "^5.0.2",
+    "inferno": "^5.3.0",
     "inferno-scripts": "6.3.0"
   },
   "scripts": {
