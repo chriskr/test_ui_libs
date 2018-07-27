@@ -1,4 +1,4 @@
-import {html, render} from './lit-html.js';
+import {html, render} from 'lit-html';
 import LitComponent from './LitComponent.js';
 import Calendar from './Calendar.js';
 import {range} from './common/utils.js';
@@ -6,6 +6,10 @@ import TestRunner from './common/test_runner.js';
 
 
 class App extends LitComponent {
+
+  static get DISPLAY_CALENDARS () {
+    return 'display-calendars';
+  }
   constructor() {
     super();
     this.state = {count: 1, time: 0};

@@ -3,7 +3,7 @@ import LocalHolidays from './common/LocalHolidays.js';
 import localHolidaysNorway from './common/localHolidaysNorway.js';
 import {MONTH_NAMES, WEEK_DAYS_LONG, WEEK_DAYS_SHORT} from './common/ui_strings.js';
 import {range, rotate} from './common/utils.js';
-import {html, render} from './lit-html.js';
+import {html, render} from 'lit-html';
 import LitComponent from './LitComponent.js';
 
 class Calendar extends LitComponent {
@@ -45,11 +45,11 @@ class Calendar extends LitComponent {
     return html`
       <header>
         <span data-handler="previous-year">
-          &lt;
+          <i class="material-icons">chevron_left</i>
         </span>
         <h1>${todayStr}</h1>
         <span data-handler="next-year">
-          &gt;
+          <i class="material-icons">chevron_right</i>
         </span>
       </header>
     `;

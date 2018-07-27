@@ -1,4 +1,4 @@
-import {html, render} from './lit-html.js';
+import {html, render} from 'lit-html';
 import App from './App.js';
 
 render(html`${new App().render()}`, document.getElementById('root'));

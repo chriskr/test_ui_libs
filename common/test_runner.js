@@ -82,6 +82,7 @@ const defs = new Map([
   ],
 ]);
 
+/*
 const tests = [
   [TAKE_TIME_STAMP],
   ...Array.from(range(5)).map(
@@ -98,6 +99,14 @@ const tests = [
            BACK_COMPOSITE_VIEW, FORWARD_COMPOSITE_VIEW, FORWARD_COMPOSITE_VIEW,
            FORWARD_COMPOSITE_VIEW]),
   [CLEAR_VIEW, NEW_SINGLE_VIEW], [TAKE_TIME_STAMP],
+  // eslint-disable-next-line
+].reduce((acc, array) => (acc.push(...array), acc));
+*/
+
+const tests = [
+  [NEW_VIEW],
+  [FORWARD, FORWARD, FORWARD, FORWARD, FORWARD],
+  [BACK, BACK, BACK, BACK, BACK, BACK],
   // eslint-disable-next-line
 ].reduce((acc, array) => (acc.push(...array), acc));
 
@@ -165,7 +174,7 @@ class TestRunner {
         this.handleLogTime();
       } else {
         const element = document.querySelector(test.selector);
-        element.dispatchEvent(new Event('click', {bubbles: true}));
+        element.click();
       }
     } else {
       document.removeEventListener('log-time', this.handleLogTime);
@@ -192,6 +201,7 @@ class TestRunner {
 
   showResults() {
     this.closeDialog_();
+    //return;
     const log = this.results_[0];
     if (this.results_.length > 1) {
       for (let i = 0; i < log.length; i++) {
@@ -226,7 +236,7 @@ class TestRunner {
     this.pointer_++;
     // eslint-disable-next-line
     document.body.offsetHeight;
-    this.startTest_();
+    setTimeout(() => this.startTest_(), 500);
   }
 }
 
@@ -284,6 +294,13 @@ TestRunner.Templates = class {
               padding: 0 5px;
             }
 
+            #result-dialog p {
+              clear: both;
+              margin: 0;
+              padding: 10px;
+              font-size: 24px;
+            }
+
             #result-dialog .close-button {
               cursor: pointer;
               float: right;
@@ -292,6 +309,7 @@ TestRunner.Templates = class {
               text-align: center;
               padding: 0 5px;
               margin-right: -5px;
+              margin-bottom: -10px;
             }
             `
     ];
@@ -300,7 +318,8 @@ TestRunner.Templates = class {
       'div',
       {'id': 'result-dialog'},
       ['div', {'class': 'close-button'}, 'x'],
-      table,
+      ['p', 'done!'],
+      //table,
       style,
     ];
   }

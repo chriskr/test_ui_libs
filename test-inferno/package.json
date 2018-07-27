@@ -4,12 +4,15 @@
   "private": true,
   "homepage": "/test_ui_libs/test-inferno/build/",
   "dependencies": {
+    "copyfiles": "^2.0.0",
     "inferno": "^5.3.0",
-    "inferno-scripts": "6.3.0"
+    "inferno-scripts": "6.3.0",
+    "uldu": "^1.0.7"
   },
   "scripts": {
-    "start": "inferno-scripts start",
-    "build": "inferno-scripts build",
+    "setup": "copyfiles --up 1 -e ../common/*.config.js  ../common/*.* src",
+    "start": "npm run setup && inferno-scripts start",
+    "build": "npm run setup && inferno-scripts build",
     "test": "inferno-scripts test --env=jsdom",
     "eject": "inferno-scripts eject"
   }

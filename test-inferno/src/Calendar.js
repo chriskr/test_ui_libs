@@ -44,11 +44,11 @@ const Today = ({ today, handleClick }) => {
   return (
     <header>
       <span data-handler="previous-year" onClick={handleClick}>
-        &lt;
+        <i className="material-icons">chevron_left</i>
       </span>
       <h1>{todayStr}</h1>
       <span data-handler="next-year" onClick={handleClick}>
-        &gt;
+        <i className="material-icons">chevron_right</i>
       </span>
     </header>
   );

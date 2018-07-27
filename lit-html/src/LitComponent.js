@@ -1,5 +1,5 @@
 
-import {html, render} from './lit-html.js';
+import {html, render} from 'lit-html';
 class LitComponent {
   constructor() {
     this.container_ = document.createDocumentFragment();
